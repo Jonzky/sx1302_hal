@@ -1442,7 +1442,6 @@ int main(int argc, char ** argv)
         MSG("ERROR: [main] impossible to create JIT thread\n");
         exit(EXIT_FAILURE);
     }
-    printf("INFO: Pre gps_dev");
 
     /* spawn thread to manage GPS */
     if (gps_dev) {
@@ -1461,7 +1460,6 @@ int main(int argc, char ** argv)
             exit(EXIT_FAILURE);
         }
     }
-    printf("INFO: post gps_dev");
 
     /* configure signal handling */
     sigemptyset(&sigact.sa_mask);
@@ -1470,8 +1468,6 @@ int main(int argc, char ** argv)
     sigaction(SIGQUIT, &sigact, NULL); /* Ctrl-\ */
     sigaction(SIGINT, &sigact, NULL); /* Ctrl-C */
     sigaction(SIGTERM, &sigact, NULL); /* default "kill" command */
-
-    printf("INFO: Main loop pre");
 
     /* main loop task : statistics collection */
     while (!exit_sig && !quit_sig) {
