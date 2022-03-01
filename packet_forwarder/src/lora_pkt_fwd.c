@@ -3021,7 +3021,7 @@ void thread_jit(void) {
                             pthread_mutex_lock(&mx_meas_dw);
                             meas_nb_tx_ok += 1;
                             pthread_mutex_unlock(&mx_meas_dw);
-                            MSG_DEBUG(DEBUG_PKT_FWD, "lgw_send done on rf_chain %d: count_us=%u\n", i, pkt.count_us);
+                            MSG_DEBUG(DEBUG_PKT_FWD_OTHER, "lgw_send done on rf_chain %d: count_us=%u\n", i, pkt.count_us);
                         }
                     } else {
                         MSG("ERROR: jit_dequeue failed on rf_chain %d with %d\n", i, jit_result);
