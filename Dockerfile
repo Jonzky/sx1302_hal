@@ -26,6 +26,7 @@ COPY start.sh /opt
 RUN apk add --update-cache \
     wget \
     nano \
-    linux-tools
+    linux-tools \
+    spi-tools
 
 ENTRYPOINT ["sh", "/opt/start.sh"]
