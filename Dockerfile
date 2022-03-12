@@ -1,19 +1,19 @@
-FROM arm64v8/alpine:latest
+FROM arm64v8/debian:bullseye-slim
 
-RUN apk add --update-cache \
-    build-base \
-    i2c-tools \
-    linux-headers
+RUN apt-get update && apt-get install -y \
+  jq \
+  build-essential \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src/sx1302
 
 COPY . .
 
 RUN make clean
-RUN make -j 4
+RUN make
 
 
-FROM arm64v8/alpine:latest
+FROM arm64v8/debian:bullseye-slim
 
 WORKDIR /opt/packet-forwarder
 
@@ -23,9 +23,10 @@ COPY --from=0 /src/sx1302/tools/reset_lgw.sh /opt/
 
 COPY start.sh /opt
 
-RUN apk add --update-cache \
-    wget \
-    nano \
-    linux-tools
+RUN apt-get update && apt-get install -y \
+  git \
+  nano \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["sh", "/opt/start.sh"]
+ENTRYPOINT ["bash", "/opt/start.sh"]
