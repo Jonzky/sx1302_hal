@@ -1575,17 +1575,17 @@ int main(int argc, char ** argv)
         root_debug_json_value = json_value_init_object();
         root_debug_json_object = json_value_get_object(root_debug_json_value);
 
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.packets_received", cp_nb_rx_rcv);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.crc_ok", 100.0 * rx_ok_ratio);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.crc_fail", 100.0 * rx_bad_ratio);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.crc_none", 100.0 * rx_nocrc_ratio);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.packets_forwarded", cp_up_pkt_fwd);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.push_sent", cp_up_dgram_sent);
-        json_object_dotset_number(rootroot_debug_json_object_object, "upstream.push_ack", 100.0 * up_ack_ratio);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.packets_received", cp_nb_rx_rcv);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.crc_ok", 100.0 * rx_ok_ratio);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.crc_fail", 100.0 * rx_bad_ratio);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.crc_none", 100.0 * rx_nocrc_ratio);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.packets_forwarded", cp_up_pkt_fwd);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.push_sent", cp_up_dgram_sent);
+        json_object_dotset_number(root_debug_json_object_object, "upstream.push_ack", 100.0 * up_ack_ratio);
 
 
         serialized_debug_string = json_serialize_to_string(root_debug_json_value);
-        printf("\n -- Debug String -- %s\n", serialized_string);       
+        printf("\n -- Debug String -- %s\n", serialized_debug_string);       
 
         json_free_serialized_string(serialized_debug_string);
         json_value_free(root_debug_json_value);
